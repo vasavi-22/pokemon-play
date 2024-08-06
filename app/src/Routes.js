@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./components/Home";
-import AddPokemon from "./components/AddPokemon";
-import PokemonUsers from "./components/PokemonUsers";
+import Layout from "./Components/Structure/Layout";
+import Home from './Components/Home/Home';
+import AddPokemon from "./Components/AddPokemon/AddPokemon";
+import PokemonUsers from "./Components/PokemonUsers/PokemonUsers";
 
 const AppRoutes = () => {
     return(

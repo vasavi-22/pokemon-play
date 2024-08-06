@@ -8,7 +8,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import "./users.css";
+import styles from './PokemonUsers.module.css';
 
 const PokemonUsers = () => {
   const [pokemonData, setPokemonData] = useState([]);
@@ -77,12 +77,12 @@ const PokemonUsers = () => {
   };
 
   return (
-    <div className="users-div">
+    <div className={styles.usersDiv}>
       <h1>List of Pokemon Users</h1>
-      <button className="delete-all" onClick={handleDelete}>
+      <button className={styles.deleteAll} onClick={handleDelete}>
         Delete All
       </button>
-      <table className="table-container">
+      <table className={styles.tableContainer}>
         <thead>
           <tr>
             <th>Pokemon Owner Name</th>
@@ -103,20 +103,20 @@ const PokemonUsers = () => {
                 <td>{pokemon?.pokemonAbility}</td>
                 <td>1</td>
                 <td>
-                  <FontAwesomeIcon icon={faPlus} className="icon" />
+                  <FontAwesomeIcon icon={faPlus} className={styles.icon} />
                 </td>
                 <td>
                   <FontAwesomeIcon
                     icon={faPenToSquare}
                     onClick={() => editPokemon(pokemon)}
-                    className="icon"
+                    className={styles.icon}
                   />
                 </td>
                 <td>
                   <FontAwesomeIcon
                     icon={faTrashCan}
                     onClick={() => deletePokemon(pokemon._id)}
-                    className="icon"
+                    className={styles.icon}
                   />
                 </td>
               </tr>
@@ -132,7 +132,7 @@ const PokemonUsers = () => {
       </table>
 
       <Dialog
-        className="edit-pokemon"
+        className={styles.editPokemon}
         header="Edit Pokemon Details"
         visible={visible}
         onHide={() => {
@@ -141,7 +141,7 @@ const PokemonUsers = () => {
           setPokemonAbility("");
         }}
         footer={
-          <div className="footer-div">
+          <div className={styles.footerDiv}>
             <Button label="Save" onClick={updatePokemon} autoFocus />
             <Button
               label="Cancel"

@@ -3,14 +3,14 @@
     background-size: cover;
     background-position: center;
 } */
-.home-div{
+.homeDiv{
     display: flex;
     flex-direction: column;
     gap : 10px;
     align-items: center;
 }
 
-.home-div .new{
+.homeDiv .new{
     color : #4b5a4a;
     font-size: 16px;
     font-weight: 700;
@@ -22,7 +22,7 @@
     padding : 10px;
 }
 
-.home-div .user{
+.homeDiv .user{
     padding: 10px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
@@ -31,46 +31,46 @@
     width: 200px;
 }
 
-.table-container {
+.tableContainer {
     margin: 20px;
     border-collapse: collapse;
     width: 100%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
   
-.table-container th, .table-container td {
+.tableContainer th, .tableContainer td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
   
-.table-container tr:nth-child(even) {
+.tableContainer tr:nth-child(even) {
     background-color: #f9f9f9;
 }
   
-.table-container tr:hover {
+.tableContainer tr:hover {
     background-color: #ddd;
 }
   
-.table-container th {
+.tableContainer th {
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: yellow;
     color : #4b5a4a;
 }
 
-  .home-div .name{
+  .homeDiv .name{
     font-size: 25px;
     font-weight: 600;
     font-family: monospace;
   }
 
-.home-div .btns{
+.homeDiv .btns{
     display: flex;
     gap : 30px;
 }
 
-.home-div .btns button{
+.homeDiv .btns button{
     color : #4b5a4a;
     font-size: 16px;
     font-weight: 700;
@@ -81,7 +81,7 @@
     padding : 10px;
 }
 
-.home-div #pokemon-container{
+.homeDiv #pokemonContainer{
     position: relative;
     width : 600px;
     height : 400px;

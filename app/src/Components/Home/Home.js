@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./home.css";
+import styles from './Home.module.css';
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -32,7 +32,7 @@ const Home = () => {
   };
 
   const movePokemon = (pokemon, currentPosition) => {
-    const container = document.getElementById("pokemon-container");
+    const container = document.getElementById(styles.pokemonContainer);
     const pokemonWidth = 50; 
     const pokemonHeight = 50;
 
@@ -123,9 +123,9 @@ const Home = () => {
   };
 
   return (
-    <div className="home-div">
+    <div className={styles.homeDiv}>
       <Link to="/add">
-        <button className="new">Add New Pokemon</button>
+        <button className={styles.new}>Add New Pokemon</button>
       </Link>
       <select
         onChange={(e) => {
@@ -133,7 +133,7 @@ const Home = () => {
           setCurrentPlayer({});
         }}
         defaultValue=""
-        className="user"
+        className={styles.user}
       >
         <option value="" disabled>
           Select a user
@@ -144,7 +144,7 @@ const Home = () => {
           </option>
         ))}
       </select>
-      <table className="table-container">
+      <table className={styles.tableContainer}>
         <thead>
           <tr>
             <th>Name of Pokemon</th>
@@ -178,8 +178,8 @@ const Home = () => {
           )}
         </tbody>
       </table>
-      <p className="name">{currentPlayer.pokemonName}</p>
-      <div className="btns">
+      <p className={styles.name}>{currentPlayer.pokemonName}</p>
+      <div className={styles.btns}>
         <button onClick={() => handlePokemonGo(currentPlayer)}>
           Pokemon Go
         </button>
@@ -191,7 +191,7 @@ const Home = () => {
         </button>
       </div>
 
-      <div id="pokemon-container">
+      <div id={styles.pokemonContainer}>
         {pokemons.map((pokemon) => {
           const position = pokemonPositions[pokemon._id] || {
             left: pokemon.initialPositionX,
