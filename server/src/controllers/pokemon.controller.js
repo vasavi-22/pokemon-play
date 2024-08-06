@@ -1,18 +1,8 @@
 import Pokemon from "../models/pokemon.model.js";
 import User from "../models/user.model.js";
 
-
 export const addPokemon = async (req, res) => {
     const { pokemonOwnerName, pokemonName, pokemonAbility, initialPositionX, initialPositionY, speed, direction } = req.body;
-    console.log(req.body);
-    console.log(pokemonOwnerName);
-    console.log(pokemonName);
-    console.log(pokemonAbility, "ability");
-    console.log(initialPositionX);
-    console.log(initialPositionY);
-    console.log(speed);
-    console.log(direction);
-
 
     if (!pokemonOwnerName || !pokemonName || !pokemonAbility || initialPositionX === undefined || initialPositionY === undefined || !speed || !direction) {
         return res.status(400).json({
@@ -50,9 +40,9 @@ export const addPokemon = async (req, res) => {
 
 export const getPokemons = async (req,res) => {
     try{
-        // Use .populate() to fetch owner details
+        // using .populate() to fetch owner details
         const allPokemon = await Pokemon.find().populate('owner', 'pokemonOwnerName');
-        // const allPokemon = await Pokemon.find();
+
         res.status(200).json({
             message : 'Fetched pokemons',
             pokemons : allPokemon
@@ -92,7 +82,6 @@ export const deletePokemon = async (req, res) => {
 
 export const editPokemon = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     const updateData = req.body;
 
     if (!id) {
@@ -118,3 +107,17 @@ export const editPokemon = async (req, res) => {
         });
     }
 };
+
+export const deleteAllPokemons = async (req,res) => {
+    try{
+        await Pokemon.deleteMany({});
+        res.status(200).json({
+            message : 'All pokemons have been deleted'
+        });
+
+    }catch(error){
+        res.status(500).json({
+            message : error.message
+        })
+    }
+}

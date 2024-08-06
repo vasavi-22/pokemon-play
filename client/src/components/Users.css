@@ -1,4 +1,124 @@
-table, tr, th, td{
-    border: 1px solid black;
+.users-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.users-div h1{
+    color: #4b5a4a;
+}
+
+.users-div .delete-all{
+    color : #4b5a4a;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: yellow;
+    border : 2px solid yellow;
+    border-radius: 10px;
+    padding : 10px;
+}
+
+.table-container {
+    margin: 20px;
     border-collapse: collapse;
+    width: 90%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+  
+.table-container th, .table-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+  
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.table-container tr:hover {
+    background-color: #ddd;
+}
+  
+  
+.table-container th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: yellow;
+    color : #4b5a4a;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.add-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-div h1{
+    color: #4b5a4a;
+}
+
+.add-div .form-container{
+    max-width: 400px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-div .form-container .form-input{
+    margin: 10px 10px;
+    padding: 10px;
+    font-size: 16px; 
+    border: 1px solid lightgray; 
+    border-radius: 10px;
+}
+
+.add-div .form-container .form-button{
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color : #4b5a4a;
+    background-color: yellow;
+    border: 1px solid yellow; 
+    border-radius: 10px;
+}
+
+.edit-pokemon{
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin : 20px;
+    padding : 30px;
+    width : 30vw;
+    height : auto;
+}
+
+.edit-pokemon input{
+    margin: 10px 10px;
+    padding: 10px;
+    width : 90%;
+    font-size: 16px; 
+    border: 1px solid lightgray; 
+    border-radius: 10px;
+    float: center;
+}
+
+.edit-pokemon button{
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color : #4b5a4a;
+    background-color: yellow;
+    border: 1px solid yellow; 
+    border-radius: 10px;
+    float: right;
+    margin-left : 10px;
 }

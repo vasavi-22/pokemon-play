@@ -6,13 +6,22 @@ import user from './src/routes/user.route.js';
 import pokemon from './src/routes/pokemon.route.js';
 
 const app = express();
-app.use(express.json());
 
-// Configure CORS
-app.use(cors({
-    origin: 'http://localhost:3000', // Allow your frontend's origin
-    credentials: true // Allow credentials (cookies, authorization headers, etc.)
-}));
+const corsOptions = {
+    origin: 'http://localhost:3000', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'], // Allow these methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
+};
+
+// Use CORS with the options defined
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions), (req, res) => {
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE,OPTIONS');
+    res.sendStatus(200);
+});
+
+app.use(express.json());
 
 app.get('/',(req,res) => res.send('hello world'));
 app.use('/user',user);

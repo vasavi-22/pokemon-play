@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import './users.css';
 
 
 const AddPokemon = () => {
@@ -12,6 +14,8 @@ const AddPokemon = () => {
     const [speed, setSpeed] = useState("");
     const [direction, setDirection] = useState("");
 
+    const navigate = useNavigate();
+
     useEffect(()=>{
         fetchPokemons();
     },[]);
@@ -19,27 +23,30 @@ const AddPokemon = () => {
     const fetchPokemons = async () => {
         const data = await fetch("https://pokeapi.co/api/v2/pokemon-species/");
         const json = await data.json();
-        console.log(json);
         setPokemons(json?.results);
     }
 
     const findPokemon = async (url) => {
         const PokemonData = await fetch(url);
         const json = await PokemonData.json();
-        console.log(json);
         setPokemonName(json?.name);
         setPokemonAbility(json?.capture_rate);
     }
 
     const handleAddPokemon = async (e) => {
         e.preventDefault();
-        console.log(pokemonAbility, "ability");
         const newUser = {pokemonOwnerName, pokemonName, pokemonAbility, initialPositionX, initialPositionY, speed, direction};
-        console.log(newUser);
 
         try{
             const response = await axios.post('http://localhost:4000/pokemon/add', newUser);
-            console.log(response);
+            setPokemonOwnerName("");
+            setPokemonName("");
+            setPokemonAbility("");
+            setInitialPositionX("");
+            setInitialPositionY("");
+            setSpeed("");
+            setDirection("");
+            navigate('/users');
 
         }catch(error){
             console.log(error);
@@ -48,20 +55,23 @@ const AddPokemon = () => {
     }
 
     return(
-        <div>
-            <form>
-                <h1>Create Pokemon User</h1>
+        <div className="add-div">
+            <h1>Create Pokemon User</h1>
+            <form className="form-container">
                 <input type="text"
                 placeholder="Pokemon Owner" 
                 value={pokemonOwnerName}
                 onChange={(e) => setPokemonOwnerName(e.target.value)}
                 required
+                className="form-input"
                 />
+                <br/>
                 <select onChange={(e) => {
-                    console.log(e.target.value);
                     findPokemon(e.target.value);
-                }}>
-                    <option value="">Select</option>
+                }}
+                className="form-input"
+                >
+                    <option value="">Select Pokemon</option>
                     {pokemons.map((pokemon, index) => (
                         <option key={index} value={pokemon.url}>{pokemon.name}</option>
                     ))}
@@ -70,28 +80,35 @@ const AddPokemon = () => {
                 placeholder="Pokemon Ability"
                 value={pokemonAbility}
                 readOnly
+                className="form-input"
                 />
                 <input type="number"
                 placeholder="Initialposition X"
                 value={initialPositionX}
                 onChange={(e) => setInitialPositionX(e.target.value)}
+                className="form-input"
                 />
                 <input type="number"
                 placeholder="Initialposition Y"
                 value={initialPositionY}
                 onChange={(e) => setInitialPositionY(e.target.value)}
+                className="form-input"
                 />
                 <input type="number"
                 placeholder="Speed"
                 value={speed}
                 onChange={(e) => setSpeed(e.target.value)}
+                className="form-input"
                 />
                 <input type="text"
                 placeholder="Direction"
                 value={direction}
                 onChange={(e) => setDirection(e.target.value)}
+                className="form-input"
                 />
-                <button onClick={handleAddPokemon}>Add</button>
+                <br />
+                <button className="form-button"
+                onClick={handleAddPokemon}>Add</button>
             </form>
         </div>
     );
