@@ -9,6 +9,7 @@ const AddPokemon = () => {
     const [pokemonOwnerName, setPokemonOwnerName] = useState("");
     const [pokemonName, setPokemonName] = useState("");
     const [pokemonAbility, setPokemonAbility] = useState("");
+    const [pokemonCount, setPokemonCount] = useState(1);
     const [initialPositionX, setInitialPositionX] = useState("");
     const [initialPositionY, setInitialPositionY] = useState("");
     const [speed, setSpeed] = useState("");
@@ -42,6 +43,7 @@ const AddPokemon = () => {
             setPokemonOwnerName("");
             setPokemonName("");
             setPokemonAbility("");
+            setPokemonCount("");
             setInitialPositionX("");
             setInitialPositionY("");
             setSpeed("");
@@ -79,6 +81,12 @@ const AddPokemon = () => {
                 <input type="number"
                 placeholder="Pokemon Ability"
                 value={pokemonAbility}
+                readOnly
+                className="form-input"
+                />
+                <input type="number"
+                placeholder="Pokemon Count"
+                value={pokemonCount}
                 readOnly
                 className="form-input"
                 />

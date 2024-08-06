@@ -2,9 +2,9 @@ import Pokemon from "../models/pokemon.model.js";
 import User from "../models/user.model.js";
 
 export const addPokemon = async (req, res) => {
-    const { pokemonOwnerName, pokemonName, pokemonAbility, initialPositionX, initialPositionY, speed, direction } = req.body;
+    const { pokemonOwnerName, pokemonName, pokemonAbility, pokemonCount, initialPositionX, initialPositionY, speed, direction } = req.body;
 
-    if (!pokemonOwnerName || !pokemonName || !pokemonAbility || initialPositionX === undefined || initialPositionY === undefined || !speed || !direction) {
+    if (!pokemonOwnerName || !pokemonName || !pokemonAbility || !pokemonCount || initialPositionX === undefined || initialPositionY === undefined || !speed || !direction) {
         return res.status(400).json({
             message: 'Details missing'
         });
@@ -23,7 +23,7 @@ export const addPokemon = async (req, res) => {
             // });
         }
 
-        const newPokemon = new Pokemon({ owner: user._id, pokemonName, pokemonAbility, initialPositionX, initialPositionY, speed, direction });
+        const newPokemon = new Pokemon({ owner: user._id, pokemonName, pokemonAbility, pokemonCount, initialPositionX, initialPositionY, speed, direction });
         await newPokemon.save();
 
         return res.status(201).json({

@@ -14,6 +14,11 @@ const PokemonSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  pokemonCount : {
+    type: Number,
+    required: true,
+    default: 1,
+  },
   initialPositionX: {
     type: Number,
     required: true

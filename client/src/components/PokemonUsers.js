@@ -39,7 +39,7 @@ const PokemonUsers = () => {
     const updated = { pokemonName, pokemonAbility };
 
     try {
-      const response = await axios.patch(
+      const response = await axios.put(
         `http://localhost:4000/pokemon/edit/${id}`,
         updated
       );

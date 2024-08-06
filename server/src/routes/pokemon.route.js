@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/all',getPokemons);
 router.post('/add',addPokemon);
-router.patch('/edit/:id',editPokemon);
+router.put('/edit/:id',editPokemon);
 router.delete('/delete/:id',deletePokemon);
 router.delete('/delete',deleteAllPokemons);
 
