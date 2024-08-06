@@ -8,6 +8,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Swal from "sweetalert2";
 import styles from './PokemonUsers.module.css';
 import { useNavigate } from "react-router-dom";
 
@@ -58,25 +59,71 @@ const PokemonUsers = () => {
   };
 
   const deletePokemon = async (id) => {
-    try {
-      const response = await axios.delete(
-        `/pokemon/delete/${id}`
-      );
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      customClass: {
+        confirmButton: styles.confirmButton,
+        cancelButton: styles.cancelButton
+      }
+    }).then(async (result) =>{
+      if(result.isConfirmed){
+        try {
+          const response = await axios.delete(
+            `/pokemon/delete/${id}`
+          );
+          fetchData();
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'The Pokemon has been deleted.',
+            icon: 'success',
+            customClass: {
+              confirmButton: styles.okButton
+            }
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })
   };
 
   const handleDelete = async () => {
-    try {
-      const response = await axios.delete(
-        "/pokemon/delete"
-      );
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete all!',
+      cancelButtonText: 'No, cancel!',
+      customClass: {
+        confirmButton: styles.confirmButton,
+        cancelButton: styles.cancelButton
+      }
+    }).then(async (result) => {
+      if(result.isConfirmed){
+        try {
+          const response = await axios.delete(
+            "/pokemon/delete"
+          );
+          fetchData();
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'All Pokemon have been deleted.',
+            icon: 'success',
+            customClass: {
+              confirmButton: styles.okButton
+            }
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })
   };
 
   const addPage = (pokemon) => {

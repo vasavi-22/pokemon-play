@@ -122,3 +122,15 @@
     float: right;
     margin-left : 10px;
 }
+
+.confirmButton, .okButton{
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color : #4b5a4a;
+    background-color: yellow;
+    border: 1px solid yellow; 
+    border-radius: 10px;
+    float: right;
+    margin-left : 10px;
+}
