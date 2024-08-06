@@ -22,7 +22,7 @@ const PokemonUsers = () => {
   }, []);
 
   const fetchData = () => {
-    axios.get("http://localhost:4000/pokemon/all").then((response) => {
+    axios.get("/pokemon/all").then((response) => {
       setPokemonData(response.data?.pokemons);
     });
   };
@@ -40,7 +40,7 @@ const PokemonUsers = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:4000/pokemon/edit/${id}`,
+        `/pokemon/edit/${id}`,
         updated
       );
       fetchData();
@@ -57,7 +57,7 @@ const PokemonUsers = () => {
   const deletePokemon = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/pokemon/delete/${id}`
+        `/pokemon/delete/${id}`
       );
       fetchData();
     } catch (error) {
@@ -68,7 +68,7 @@ const PokemonUsers = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        "http://localhost:4000/pokemon/delete"
+        "/pokemon/delete"
       );
       fetchData();
     } catch (error) {

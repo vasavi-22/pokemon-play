@@ -17,13 +17,13 @@ const Home = () => {
   }, []);
 
   const fetchUsers = () => {
-    axios.get("http://localhost:4000/user/all").then((response) => {
+    axios.get("/user/all").then((response) => {
       setUsers(response.data?.users);
     });
   };
 
   const fetchPokemons = (id) => {
-    axios.get("http://localhost:4000/pokemon/all").then((response) => {
+    axios.get("/pokemon/all").then((response) => {
       const data = response.data?.pokemons.filter(
         (pokemon) => pokemon.owner._id === id
       );

@@ -38,7 +38,7 @@ const AddPokemon = () => {
         const newUser = {pokemonOwnerName, pokemonName, pokemonAbility,pokemonCount, initialPositionX, initialPositionY, speed, direction};
 
         try{
-            const response = await axios.post('http://localhost:4000/pokemon/add', newUser);
+            const response = await axios.post('/pokemon/add', newUser);
             setPokemonOwnerName("");
             setPokemonName("");
             setPokemonAbility("");
