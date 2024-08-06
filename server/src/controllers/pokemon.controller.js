@@ -83,6 +83,7 @@ export const deletePokemon = async (req, res) => {
 export const editPokemon = async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
+    console.log(updateData,"update data");
 
     if (!id) {
         return res.status(400).json({

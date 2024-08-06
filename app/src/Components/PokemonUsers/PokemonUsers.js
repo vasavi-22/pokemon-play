@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import styles from './PokemonUsers.module.css';
+import { useNavigate } from "react-router-dom";
 
 const PokemonUsers = () => {
   const [pokemonData, setPokemonData] = useState([]);
@@ -16,6 +17,8 @@ const PokemonUsers = () => {
   const [pokemonAbility, setPokemonAbility] = useState("");
   const [id, setId] = useState("");
   const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -76,6 +79,10 @@ const PokemonUsers = () => {
     }
   };
 
+  const addPage = (pokemon) => {
+    navigate(`/add/${pokemon._id}`, { state: { pokemon } });
+  };
+
   return (
     <div className={styles.usersDiv}>
       <h1>List of Pokemon Users</h1>
@@ -101,9 +108,12 @@ const PokemonUsers = () => {
                 <td>{pokemon?.owner?.pokemonOwnerName}</td>
                 <td>{pokemon?.pokemonName}</td>
                 <td>{pokemon?.pokemonAbility}</td>
-                <td>1</td>
+                <td>{pokemon?.pokemonCount}</td>
                 <td>
-                  <FontAwesomeIcon icon={faPlus} className={styles.icon} />
+                  <FontAwesomeIcon 
+                  icon={faPlus} 
+                  onClick={() => addPage(pokemon)}
+                  className={styles.icon} />
                 </td>
                 <td>
                   <FontAwesomeIcon

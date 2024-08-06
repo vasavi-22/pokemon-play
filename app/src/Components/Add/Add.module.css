@@ -1,0 +1,37 @@
+.addPokemonDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPokemonDiv h1{
+    color: #4b5a4a;
+}
+
+.addPokemonDiv form{
+    max-width: 400px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.addPokemonDiv form input{
+    margin: 10px 10px;
+    padding: 10px;
+    font-size: 16px; 
+    border: 1px solid lightgray; 
+    border-radius: 10px;
+}
+
+.addPokemonDiv form button{
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color : #4b5a4a;
+    background-color: yellow;
+    border: 1px solid yellow; 
+    border-radius: 10px;
+}

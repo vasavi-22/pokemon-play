@@ -124,7 +124,7 @@ const Home = () => {
 
   return (
     <div className={styles.homeDiv}>
-      <Link to="/add">
+      <Link to="/addnew">
         <button className={styles.new}>Add New Pokemon</button>
       </Link>
       <select
@@ -162,7 +162,7 @@ const Home = () => {
               <tr key={pokemon._id} onClick={() => setCurrentPlayer(pokemon)}>
                 <td>{pokemon.pokemonName}</td>
                 <td>{pokemon.pokemonAbility}</td>
-                <td>1</td>
+                <td>{pokemon.pokemonCount}</td>
                 <td>{pokemon.initialPositionX}</td>
                 <td>{pokemon.initialPositionY}</td>
                 <td>{pokemon.speed}</td>
