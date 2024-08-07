@@ -92,3 +92,27 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
+
+.tooltip{
+    position: absolute;
+    top : "50%";
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.tooltipArrow{
+    position: absolute;
+    bottom: 100%; /* Positioning arrow at the bottom of tooltip */
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    height: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}

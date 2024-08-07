@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styles from './Home.module.css';
+import styles from "./Home.module.css";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -33,7 +33,7 @@ const Home = () => {
 
   const movePokemon = (pokemon, currentPosition) => {
     const container = document.getElementById(styles.pokemonContainer);
-    const pokemonWidth = 50; 
+    const pokemonWidth = 50;
     const pokemonHeight = 50;
 
     let { left, top } = currentPosition;
@@ -57,18 +57,23 @@ const Home = () => {
         break;
     }
 
-   // ensure the pokemon stays within the container bounds
-    left = Math.max(0, Math.min(left, container.clientWidth - pokemonWidth));
-    top = Math.max(0, Math.min(top, container.clientHeight - pokemonHeight));
+    // Check if the pokemon is about to cross the container bounds
+    const willCrossBounds =
+      left < 0 ||
+      left > container.clientWidth - pokemonWidth ||
+      top < 0 ||
+      top > container.clientHeight - pokemonHeight;
 
-    // if pokemon moves out of bounds, hide it
-    const isVisible =
-      left >= 0 &&
-      left <= container.clientWidth - pokemonWidth &&
-      top >= 0 &&
-      top <= container.clientHeight - pokemonHeight;
+    if (willCrossBounds) {
+      return {
+        left: pokemon.initialPositionX,
+        top: pokemon.initialPositionY,
+        isVisible: false,
+        reset: true,
+      };
+    }
 
-    return { left, top, isVisible };
+    return { left, top, isVisible: true, reset: false };
   };
 
   const handlePokemonGo = (pokemon) => {
@@ -84,9 +89,22 @@ const Home = () => {
         };
         const newPosition = movePokemon(pokemon, currentPosition);
 
-        if (!newPosition.isVisible) {
+        if (newPosition.reset) {
           clearInterval(intervals.current[pokemon._id]);
-          return prevState;
+          setTimeout(() => {
+            setPokemonPositions((prevState) => ({
+              ...prevState,
+              [pokemon._id]: {
+                left: pokemon.initialPositionX,
+                top: pokemon.initialPositionY,
+                isVisible: true,
+              },
+            }));
+          }, 1000); // Delay of 1 second before showing the Pokemon at the initial position
+          return {
+            ...prevState,
+            [pokemon._id]: { ...newPosition, isVisible: false },
+          };
         }
 
         return { ...prevState, [pokemon._id]: newPosition };
@@ -100,8 +118,23 @@ const Home = () => {
 
       if (newFleeState) {
         clearInterval(intervals.current[pokemon._id]);
+        setPokemonPositions((prevState) => ({
+          ...prevState,
+          [pokemon._id]: {
+            ...prevState[pokemon._id],
+            isVisible: false,
+          },
+        }));
+        // alert(`${pokemon.pokemonName} is fleeing due to danger!`);
       } else {
         handlePokemonGo(pokemon);
+        setPokemonPositions((prevState) => ({
+          ...prevState,
+          [pokemon._id]: {
+            ...prevState[pokemon._id],
+            isVisible: true,
+          },
+        }));
       }
 
       return { ...prevState, [pokemon._id]: newFleeState };
@@ -124,9 +157,14 @@ const Home = () => {
 
   return (
     <div className={styles.homeDiv}>
-      <Link to="/addnew">
-        <button className={styles.new}>Add New Pokemon</button>
-      </Link>
+      <div>
+        <Link to="/addnew">
+          <button className={styles.new}>Add New Pokemon</button>
+        </Link>
+        <Link to="/users">
+          <button className={styles.new}>View Pokemons</button>
+        </Link>
+      </div>
       <select
         onChange={(e) => {
           fetchPokemons(e.target.value);
@@ -191,34 +229,86 @@ const Home = () => {
         </button>
       </div>
 
+      {/* <div id={styles.pokemonContainer}>
+        {currentPlayer && currentPlayer._id && (
+          <div
+            key={currentPlayer._id}
+            style={{
+              position: "absolute",
+              left: pokemonPositions[currentPlayer._id]?.left || currentPlayer.initialPositionX,
+              top: pokemonPositions[currentPlayer._id]?.top || currentPlayer.initialPositionY,
+              transition: freeze[currentPlayer._id] ? "none" : `all 0.1s linear`,
+              display: pokemonPositions[currentPlayer._id]?.isVisible === false || flee[currentPlayer._id] ? "none" : "block",
+              width: "auto",
+              height: "30px",
+              border: "2px solid yellow",
+              padding: "10px",
+              borderRadius: "50%",
+              backgroundColor: "yellow",
+            }}
+          >
+            {currentPlayer.pokemonName}
+            {flee[currentPlayer._id] && (
+              <div className={styles.tooltip}>
+                Danger! This Pokemon is fleeing.
+                <div className={styles.tooltipArrow}></div>
+              </div>
+            )}
+          </div>
+        )}
+      </div> */}
+
       <div id={styles.pokemonContainer}>
-        {pokemons.map((pokemon) => {
-          const position = pokemonPositions[pokemon._id] || {
-            left: pokemon.initialPositionX,
-            top: pokemon.initialPositionY,
-          };
-          const isVisible = flee[pokemon._id] ? false : true;
-          return (
+        {currentPlayer && currentPlayer._id && (
+          <div
+            key={currentPlayer._id}
+            style={{
+              position: "relative", // Ensure the wrapper div is relative for tooltip positioning
+            }}
+          >
             <div
-              key={pokemon._id}
               style={{
                 position: "absolute",
-                left: position.left,
-                top: position.top,
-                transition: freeze[pokemon._id] ? "none" : `all 0.1s linear`,
-                display: isVisible ? "block" : "none",
+                left:
+                  pokemonPositions[currentPlayer._id]?.left ||
+                  currentPlayer.initialPositionX,
+                top:
+                  pokemonPositions[currentPlayer._id]?.top ||
+                  currentPlayer.initialPositionY,
+                transition: freeze[currentPlayer._id]
+                  ? "none"
+                  : `all 0.1s linear`,
+                display:
+                  pokemonPositions[currentPlayer._id]?.isVisible === false
+                    ? "none"
+                    : "block",
                 width: "auto",
                 height: "30px",
-                border: "2px solid yellow",
+                border: "5px solid #ee9626",
                 padding: "10px",
                 borderRadius: "50%",
-                backgroundColor: "yellow",
+                backgroundColor: "#ffe135",
               }}
             >
-              {pokemon.pokemonName}
+              {currentPlayer.pokemonName}
             </div>
-          );
-        })}
+            {flee[currentPlayer._id] && (
+              <div
+                className={styles.tooltip}
+                style={{
+                  position: "absolute",
+                  top: "5px", // Position tooltip above Pokemon
+                  left: "50%", // Center tooltip horizontally
+                  transform: "translateX(-50%)",
+                  zIndex: 2
+                }}
+              >
+                Danger! This Pokémon is fleeing.
+                <div className={styles.tooltipArrow}></div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
