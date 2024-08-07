@@ -18,7 +18,7 @@
     - Dropdown list you down the available users, select the user to list his pokemons.
     - Table shows the pokemons respective to the user selected in the dropdown, each row includes the details of the pokemon(Pokemon Name, Pokemon Ability, Number of Pokemon, InitialPositionX, InitialPositionY, Speed and Direction).
     - Select the pokemon in the table you want to play.
-    - Pokemon Go, Pokemon Flee, Pokemon Freeze - Are the pokemon controls.
+    - Pokemon Go, Pokemon Flee, Pokemon Freeze - Are the pokemon controls
     - Pokemon Go : Moves the pokemon starting from it's original position with the given speed towards the given direction.
     - Pokemon Flee : It acts as a toggle to vanish and appear the pokemon in its current position.
     - Pokemon Freeze : Make the pokemon freeze in its current position, and can unfreeze it.
