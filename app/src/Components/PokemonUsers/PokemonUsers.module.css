@@ -52,43 +52,6 @@
     cursor: pointer;
 }
 
-.addDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.addDiv h1{
-    color: #4b5a4a;
-}
-
-.addDiv .formContainer{
-    max-width: 400px;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.6); 
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.addDiv .formContainer .formInput{
-    margin: 10px 10px;
-    padding: 10px;
-    font-size: 16px; 
-    border: 1px solid lightgray; 
-    border-radius: 10px;
-}
-
-.addDiv .formContainer .formButton{
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    color : #4b5a4a;
-    background-color: yellow;
-    border: 1px solid yellow; 
-    border-radius: 10px;
-}
 
 .editPokemon{
     background-color: white;
