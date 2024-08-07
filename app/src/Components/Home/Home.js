@@ -125,7 +125,6 @@ const Home = () => {
             isVisible: false,
           },
         }));
-        // alert(`${pokemon.pokemonName} is fleeing due to danger!`);
       } else {
         handlePokemonGo(pokemon);
         setPokemonPositions((prevState) => ({
@@ -229,35 +228,6 @@ const Home = () => {
         </button>
       </div>
 
-      {/* <div id={styles.pokemonContainer}>
-        {currentPlayer && currentPlayer._id && (
-          <div
-            key={currentPlayer._id}
-            style={{
-              position: "absolute",
-              left: pokemonPositions[currentPlayer._id]?.left || currentPlayer.initialPositionX,
-              top: pokemonPositions[currentPlayer._id]?.top || currentPlayer.initialPositionY,
-              transition: freeze[currentPlayer._id] ? "none" : `all 0.1s linear`,
-              display: pokemonPositions[currentPlayer._id]?.isVisible === false || flee[currentPlayer._id] ? "none" : "block",
-              width: "auto",
-              height: "30px",
-              border: "2px solid yellow",
-              padding: "10px",
-              borderRadius: "50%",
-              backgroundColor: "yellow",
-            }}
-          >
-            {currentPlayer.pokemonName}
-            {flee[currentPlayer._id] && (
-              <div className={styles.tooltip}>
-                Danger! This Pokemon is fleeing.
-                <div className={styles.tooltipArrow}></div>
-              </div>
-            )}
-          </div>
-        )}
-      </div> */}
-
       <div id={styles.pokemonContainer}>
         {currentPlayer && currentPlayer._id && (
           <div
@@ -303,7 +273,7 @@ const Home = () => {
                   zIndex: 2
                 }}
               >
-                Danger! This Pokémon is fleeing.
+                Danger! This Pokemon is fleeing.
                 <div className={styles.tooltipArrow}></div>
               </div>
             )}
