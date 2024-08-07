@@ -14,8 +14,6 @@
     - npm install
     - npm start ( starts the application at localhost:3000)
 
-# Pokemon Play Application : 
-
 #### Home page :
     - Dropdown list you down the available users, select the user to list his pokemons.
     - Table shows the pokemons respective to the user selected in the dropdown, each row includes the details of the pokemon(Pokemon Name, Pokemon Ability, Number of Pokemon, InitialPositionX, InitialPositionY, Speed and Direction).
