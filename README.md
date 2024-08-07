@@ -1,4 +1,4 @@
-# pokemon-play
+# Pokemon Play Application : 
 
 ## To run the application on local machine
 
@@ -14,9 +14,6 @@
     - npm install
     - npm start ( starts the application at localhost:3000)
 
-
-
-# Pokemon Play Application : 
 
 #### Home page :
     - Dropdown list you down the available users, select the user to list his pokemons.
